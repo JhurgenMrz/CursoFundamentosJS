@@ -6,7 +6,7 @@ var jhurgen ={
 var mauro = {
     nombre:'Mauro',
     apellido:'Gauto',
-    altura:170
+    altura:1.70
 }
 var martin={
     nombre:'Martin',
@@ -24,9 +24,27 @@ var paula ={
     altura:1.76
 }
 
+const esAlta = ({altura}) => altura > 1.8
+
+const esBaja = ({altura}) => altura < 1.70
+
+
 var personas = [jhurgen,mauro,martin,vicky,paula]
 
-for(var i=0;i< personas.length;i++){
-    var persona = personas[i]
-    console.log(`${persona.nombre} mide ${persona.altura}mts`)
-}
+// for(var i=0;i< personas.length;i++){
+//     var persona = personas[i]
+//     console.log(`${persona.nombre} mide ${persona.altura}mts`)
+// }
+
+var personasAltas = personas.filter(esAlta)
+var personasBajas = personas.filter(esBaja)
+
+    
+// var personasAltas = personas.filter(function(persona){
+//     return persona.altura > 1.8
+// })
+
+
+
+console.log(personasAltas)
+console.log(personasBajas)
