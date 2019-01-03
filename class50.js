@@ -1,11 +1,58 @@
 const API_URL = 'https://swapi.co/api/'
-
 const PEOPLE_URL ='people/:id'
-
-const lukeUrl = `${API_URL}${PEOPLE_URL.replace(':id',1)}`
 const opts = {crossDomain: true}
-const onPeopleResponse = function(person){
-    console.log(`Hola, Yo soy ${person.name}`)
+
+function obtenerPersonaje(id){
+    return new Promise((resolve,reject) => {
+        const url = `${API_URL}${PEOPLE_URL.replace(':id',id)}`
+        $
+        .get(url,opts, (data) => {
+            resolve(data)
+        })
+        .fail(() => reject(id)
+        )
+        
+    })     
+}
+function onError(id){
+    console.log(`Sucedió un error al obtener el personaje ${id}`)
 }
 
-$.get(lukeUrl,opts,onPeopleResponse)
+var ids=[1,2,3,4,5,6,7]
+
+var promesas = ids.map(id => obtenerPersonaje(id))
+
+Promise
+    .all(promesas)
+    .then(personaje => console.log(personaje))
+    .catch(onError)
+
+/*obtenerPersonaje(1)
+    .then((data) => {
+        console.log(`El personaje es ${data.name}`)
+        return obtenerPersonaje(2)
+    })
+    .then((data) => {
+        console.log(`El personaje es ${data.name}`)
+        return obtenerPersonaje(3)
+    })
+    .then((data) => {
+        console.log(`El personaje es ${data.name}`)
+        return obtenerPersonaje(4)
+    })
+    .then((data) => {
+        console.log(`El personaje es ${data.name}`)
+        return obtenerPersonaje(5)
+    })
+    .then((data) => {
+        console.log(`El personaje es ${data.name}`)
+        return obtenerPersonaje(6)
+    })
+    .then((data) => {
+        console.log(`El personaje es ${data.name}`)
+        return obtenerPersonaje(7)
+    })
+    .then((data) => {
+        console.log(`El personaje es ${data.name}`)
+    })
+    .catch(onError)*/
